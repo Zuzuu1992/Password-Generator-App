@@ -4,6 +4,36 @@ import arrowIcon from "./assets/images/icon-arrow-right.svg";
 import { useState } from "react";
 
 function App() {
+  // const [copied, setCopied] = useState(false);
+  // const [rangeValue, setRangeValue] = useState(10);
+  // const [buttonClicked, setButtonClicked] = useState(false);
+
+  // const copyClickHandler = () => {
+  //   if (generatedPass) {
+  //     navigator.clipboard.writeText(generatedPassword).then(() => {
+  //       setCopied(true);
+  //       setTimeout(() => {
+  //         setCopied(false);
+  //       }, 1300);
+  //     });
+  //   }
+  // };
+
+  // const [generatedPass, setGeneratedPass] = useState("");
+  // const [isGenerated, setIsGenerated] = useState(false);
+
+  // const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+  // const numbers = "0123456789";
+  // const symbols = "!@#$%^&*()_+-=[]{}|;':\",.<>?/";
+
+  const [password, setPassword] = useState("");
+  const [upperCase, setUpperCase] = useState(false);
+  const [lowerCase, setLowerCase] = useState(false);
+  const [numbers, setNumbers] = useState(false);
+  const [symbols, setSymbols] = useState(false);
+  const [passwordLength, setPasswordLength] = useState(10);
+
   return (
     <>
       <div className="container">
@@ -18,7 +48,7 @@ function App() {
         <div className="generate-process-box">
           <div className="roller-info">
             <p>Character Length</p>
-            <p className="numb">10</p>
+            <p className="numb">{passwordLength}</p>
           </div>
           <input
             type="range"
@@ -26,24 +56,43 @@ function App() {
             max="20"
             className="roller"
             defaultValue="Default value"
+            onChange={(event) => setPasswordLength(event.currentTarget.value)}
           ></input>
           <div className="checks">
             <div className="check">
-              <input type="checkbox" className="checkbox">
-                {/* <img src={checkIcon} /> */}
-              </input>
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={upperCase}
+                onChange={() => setUpperCase(!upperCase)}
+              ></input>
               <p>Include Uppercase Letters</p>
             </div>
             <div className="check">
-              <input type="checkbox" className="checkbox"></input>
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={lowerCase}
+                onChange={() => setLowerCase(!lowerCase)}
+              ></input>
               <p>Include Lowercase Letters</p>
             </div>
             <div className="check">
-              <input type="checkbox" className="checkbox"></input>
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={numbers}
+                onChange={() => setNumbers(!numbers)}
+              ></input>
               <p>Include Numbers</p>
             </div>
             <div className="check">
-              <input type="checkbox" className="checkbox"></input>
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={symbols}
+                onChange={() => setSymbols(!symbols)}
+              ></input>
               <p>Include Symbols</p>
             </div>
           </div>
