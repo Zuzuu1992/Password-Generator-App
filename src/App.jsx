@@ -4,42 +4,48 @@ import arrowIcon from "./assets/images/icon-arrow-right.svg";
 import { useState } from "react";
 
 function App() {
-  // const [copied, setCopied] = useState(false);
-  // const [rangeValue, setRangeValue] = useState(10);
-  // const [buttonClicked, setButtonClicked] = useState(false);
+  const upperCaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowerCaseList = "abcdefghijklmnopqrstuvwxyz";
+  const numberList = "0123456789";
+  const symbolList = "!@#$%^&*()_+-=[]{}|;':,.<>?/";
 
-  // const copyClickHandler = () => {
-  //   if (generatedPass) {
-  //     navigator.clipboard.writeText(generatedPassword).then(() => {
-  //       setCopied(true);
-  //       setTimeout(() => {
-  //         setCopied(false);
-  //       }, 1300);
-  //     });
-  //   }
-  // };
-
-  // const [generatedPass, setGeneratedPass] = useState("");
-  // const [isGenerated, setIsGenerated] = useState(false);
-
-  // const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  // const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
-  // const numbers = "0123456789";
-  // const symbols = "!@#$%^&*()_+-=[]{}|;':\",.<>?/";
-
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("PTx1f5DaFX");
   const [upperCase, setUpperCase] = useState(false);
   const [lowerCase, setLowerCase] = useState(false);
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
   const [passwordLength, setPasswordLength] = useState(10);
 
+  const generatePassword = () => {
+    let charachterList = "";
+
+    if (upperCase) {
+      charachterList += upperCaseList;
+    }
+    if (lowerCase) {
+      charachterList += lowerCaseList;
+    }
+    if (numbers) {
+      charachterList += numberList;
+    }
+    if (symbols) {
+      charachterList += symbolList;
+    }
+    let tempPassword = "";
+    const charachterListLength = charachterList.length;
+    for (let i = 0; i < passwordLength; i++) {
+      const charachterIndex = Math.round(Math.random() * charachterListLength);
+      tempPassword += charachterList.charAt(charachterIndex);
+    }
+    setPassword(tempPassword);
+  };
+
   return (
     <>
       <div className="container">
         <h1>Password Generator</h1>
         <div className="generated-box">
-          <p className="generated-pass">PTx1f5DaFX</p>
+          <div className="generated-pass">{password}</div>
           <div className="copy-box">
             <p>Copied</p>
             <img src={copyIcon} alt="Copy Icon" />
@@ -55,7 +61,7 @@ function App() {
             min="0"
             max="20"
             className="roller"
-            defaultValue="Default value"
+            defaultValue={passwordLength}
             onChange={(event) => setPasswordLength(event.currentTarget.value)}
           ></input>
           <div className="checks">
@@ -108,7 +114,7 @@ function App() {
               </div>
             </div>
           </div>
-          <button>
+          <button onClick={generatePassword}>
             Generate
             <img src={arrowIcon} />
           </button>
