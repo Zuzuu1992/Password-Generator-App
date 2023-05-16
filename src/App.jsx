@@ -15,6 +15,7 @@ function App() {
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
   const [passwordLength, setPasswordLength] = useState(10);
+  const [isCopied, setIsCopied] = useState(false);
 
   const generatePassword = () => {
     let charachterList = "";
@@ -40,6 +41,17 @@ function App() {
     setPassword(tempPassword);
   };
 
+  const copyPassword = () => {
+    if (password) {
+      navigator.clipboard.writeText(password).then(() => {
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 1300);
+      });
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -47,8 +59,8 @@ function App() {
         <div className="generated-box">
           <div className="generated-pass">{password}</div>
           <div className="copy-box">
-            <p>Copied</p>
-            <img src={copyIcon} alt="Copy Icon" />
+            {isCopied && <p>COPIED</p>}
+            <img src={copyIcon} alt="Copy Icon" onClick={copyPassword} />
           </div>
         </div>
         <div className="generate-process-box">
