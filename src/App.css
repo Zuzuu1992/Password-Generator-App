@@ -58,6 +58,7 @@ h1 {
   flex-direction: column;
   background-color: #24232c;
   padding: 17px 16px;
+  /* position: relative; */
 }
 
 .roller-info {
@@ -80,11 +81,17 @@ h1 {
   line-height: 32px;
   color: #a4ffaf;
 }
-
+.range-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
 .roller {
   appearance: none;
   background-color: #18171f;
   height: 8px;
+  /* position: relative; */
 }
 
 .roller::-webkit-slider-thumb {
@@ -94,7 +101,18 @@ h1 {
   background-color: #e6e5ea;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 3;
+  position: relative;
   /* transition: all 0.2s; */
+}
+
+.green-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #a4ffaf;
+  height: 8px;
+  width: 50%;
 }
 
 .roller::-webkit-slider-thumb:active,

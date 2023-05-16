@@ -52,6 +52,10 @@ function App() {
     }
   };
 
+  // const changeGreenLine = (passwordLength) => {
+  //   return ((passwordLength - 5) / 10) * 100;
+  // };
+
   return (
     <>
       <div className="container">
@@ -68,14 +72,20 @@ function App() {
             <p>Character Length</p>
             <p className="numb">{passwordLength}</p>
           </div>
-          <input
-            type="range"
-            min="0"
-            max="20"
-            className="roller"
-            defaultValue={passwordLength}
-            onChange={(event) => setPasswordLength(event.currentTarget.value)}
-          ></input>
+          <div className="range-box">
+            <input
+              type="range"
+              min="0"
+              max="20"
+              className="roller"
+              defaultValue={passwordLength}
+              onChange={(event) => setPasswordLength(event.currentTarget.value)}
+            ></input>
+            <div
+              className="green-line"
+              style={{ width: `${passwordLength * 5}% ` }}
+            ></div>
+          </div>
           <div className="checks">
             <div className="check">
               <input
