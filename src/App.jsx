@@ -14,10 +14,10 @@ function App() {
   const [lowerCase, setLowerCase] = useState(false);
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
-  const [passwordLength, setPasswordLength] = useState(10);
+  const [passwordLength, setPasswordLength] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
-  const [passwordStrengthColor, setPasswordStrengthColor] = useState("");
+  const [isGenerated, setIsGenerated] = useState(false);
 
   const generatePassword = () => {
     let charachterList = "";
@@ -41,6 +41,7 @@ function App() {
       tempPassword += charachterList.charAt(charachterIndex);
     }
     setPassword(tempPassword);
+    setIsGenerated(true);
   };
 
   const characterTypes = [upperCase, lowerCase, numbers, symbols];
@@ -49,9 +50,6 @@ function App() {
 
   const updatePasswordStrength = () => {
     let strength = "";
-
-    console.log(selectedTypesCount);
-    console.log(passwordStrengthColor);
 
     if (selectedTypesCount === 0) {
       strength = "";
@@ -94,7 +92,9 @@ function App() {
       <div className="container">
         <h1>Password Generator</h1>
         <div className="generated-box">
-          <div className="generated-pass">{password}</div>
+          <div className={`generated-pass ${isGenerated ? "generated" : ""}`}>
+            {password}
+          </div>
           <div className="copy-box">
             {isCopied && <p>COPIED</p>}
             <img src={copyIcon} alt="Copy Icon" onClick={copyPassword} />
