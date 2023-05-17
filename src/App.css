@@ -30,6 +30,10 @@ h1 {
   color: rgba(230, 229, 234, 0.25);
 }
 
+.generated {
+  color: #e6e5ea;
+}
+
 .copy-box {
   display: flex;
   align-items: center;
@@ -63,7 +67,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 17px;
+  margin-bottom: 20px;
 }
 
 .roller-info p {
@@ -268,6 +272,10 @@ button:hover img {
     height: 24px;
   }
 
+  .roller-info {
+    margin-bottom: 27px;
+  }
+
   .roller-info p {
     font-size: 18px;
     line-height: 24px;
@@ -283,6 +291,11 @@ button:hover img {
     line-height: 24px;
   }
 
+  .strength-box {
+    padding: 23px 32px;
+    margin-bottom: 32px;
+  }
+
   .strength-box p {
     font-size: 18px;
     line-height: 24px;
@@ -296,6 +309,8 @@ button:hover img {
   button {
     font-size: 18px;
     line-height: 24px;
+    padding-top: 21px;
+    padding-bottom: 21px;
   }
 }
 
