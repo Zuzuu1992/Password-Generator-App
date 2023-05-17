@@ -1,7 +1,7 @@
 import "./App.css";
 import copyIcon from "./assets/images/icon-copy.svg";
 import arrowIcon from "./assets/images/icon-arrow-right.svg";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
   const upperCaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -16,6 +16,8 @@ function App() {
   const [symbols, setSymbols] = useState(false);
   const [passwordLength, setPasswordLength] = useState(10);
   const [isCopied, setIsCopied] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [passwordStrengthColor, setPasswordStrengthColor] = useState("");
 
   const generatePassword = () => {
     let charachterList = "";
@@ -41,6 +43,41 @@ function App() {
     setPassword(tempPassword);
   };
 
+  const characterTypes = [upperCase, lowerCase, numbers, symbols];
+  const selectedTypesCount = characterTypes.filter((type) => type).length;
+  const strengthLevels = ["Too Weak!", "Weak", "Medium", "Strong"];
+
+  const updatePasswordStrength = () => {
+    let strength = "";
+
+    console.log(selectedTypesCount);
+    console.log(passwordStrengthColor);
+
+    if (selectedTypesCount === 0) {
+      strength = "";
+    } else {
+      strength = strengthLevels[selectedTypesCount - 1];
+    }
+
+    setPasswordStrength(strength);
+  };
+
+  const getLevelBackgroundColor = (levelIndex, activeCount) => {
+    const colors = ["#F64A4A", "#FB7C58", "#F8CD65", "#A4FFAF"];
+    if (levelIndex < activeCount) {
+      const color = colors[activeCount - 1];
+      return {
+        backgroundColor: color,
+        border: `2px solid ${color}`,
+      };
+    }
+    return {};
+  };
+
+  useEffect(() => {
+    updatePasswordStrength();
+  }, [upperCase, lowerCase, numbers, symbols]);
+
   const copyPassword = () => {
     if (password) {
       navigator.clipboard.writeText(password).then(() => {
@@ -51,10 +88,6 @@ function App() {
       });
     }
   };
-
-  // const changeGreenLine = (passwordLength) => {
-  //   return ((passwordLength - 5) / 10) * 100;
-  // };
 
   return (
     <>
@@ -127,12 +160,22 @@ function App() {
           <div className="strength-box">
             <p>Strength</p>
             <div className="level-boxes">
-              <p>Medium</p>
+              <p>{passwordStrength ? `${passwordStrength}` : ""}</p>
               <div className="squares">
-                <div className="square"></div>
-                <div className="square"></div>
-                <div className="square"></div>
-                <div className="square last"></div>
+                <div className="squares">
+                  <div className="squares">
+                    {characterTypes.map((_, index) => (
+                      <div
+                        key={index}
+                        className="square"
+                        style={getLevelBackgroundColor(
+                          index,
+                          characterTypes.filter((checkbox) => checkbox).length
+                        )}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

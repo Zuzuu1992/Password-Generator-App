@@ -37,7 +37,6 @@ h1 {
 }
 
 .copy-box p {
-  /* display: none; */
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;
@@ -58,7 +57,6 @@ h1 {
   flex-direction: column;
   background-color: #24232c;
   padding: 17px 16px;
-  /* position: relative; */
 }
 
 .roller-info {
@@ -91,7 +89,6 @@ h1 {
   appearance: none;
   background-color: #18171f;
   height: 8px;
-  /* position: relative; */
 }
 
 .roller::-webkit-slider-thumb {
@@ -103,7 +100,6 @@ h1 {
   cursor: pointer;
   z-index: 3;
   position: relative;
-  /* transition: all 0.2s; */
 }
 
 .green-line {
@@ -160,11 +156,6 @@ h1 {
   display: inline-block;
   width: 20px;
   height: 20px;
-  /* border: transparent; */
-  /* background-color: #a4ffaf;
-  border: none;
-  outline: none; */
-  /* margin-right: 5px; */
 }
 
 .checkbox:checked::before {
@@ -189,7 +180,6 @@ h1 {
   font-weight: 700;
   font-size: 16px;
   line-height: 21px;
-  /* text-align: center; */
   color: #817d92;
   text-transform: uppercase;
 }
@@ -201,11 +191,9 @@ h1 {
 }
 
 .level-boxes p {
-  display: none;
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;
-  /* text-align: right; */
   color: #e6e5ea;
   text-transform: uppercase;
 }
@@ -222,11 +210,6 @@ h1 {
   border: 2px solid #e6e5ea;
 }
 
-/* .last {
-  background-color: transparent;
-  border: 2px solid #e6e5ea;
-} */
-
 button {
   display: flex;
   align-items: center;
@@ -238,7 +221,6 @@ button {
   font-weight: 700;
   font-size: 16px;
   line-height: 21px;
-  /* text-align: center; */
   color: #24232c;
   text-transform: uppercase;
   border: 2px solid transparent;
@@ -260,7 +242,15 @@ button:hover img {
 
 @media (min-width: 768px) {
   .container {
-    padding: 133px 114px 196px 114px;
+    padding: 64px 114px 64px 114px;
+  }
+
+  .generated-box {
+    padding: 19px 32px;
+  }
+
+  .generate-process-box {
+    padding: 34px 32px;
   }
 
   h1 {
@@ -271,6 +261,11 @@ button:hover img {
   .generated-pass {
     font-size: 32px;
     line-height: 42px;
+  }
+
+  .copy-box img {
+    width: 21px;
+    height: 24px;
   }
 
   .roller-info p {
@@ -306,6 +301,6 @@ button:hover img {
 
 @media (min-width: 1440px) {
   .container {
-    padding: 300px 450px 196px 450px;
+    padding: 64px 470px 64px 470px;
   }
 }
